@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#Create folder Tempat Backup
+YM=$(date +"%Y_%m")
+INDUK_DIR="./"
+HOSTNAME=$(scutil --get LocalHostName)
+# echo $HOSTNAME
+#Backup Process
+DATTIM=$(date +"%Y_%m_%d_%H_%M")
+BACKUP_NAME="dot-golang-$DATTIM.backup"
+# echo $BACKUP_NAME
+/Applications/pgAdmin\ 4.app/Contents/SharedSupport/pg_dump -h localhost -p 5144 -U dot-golang -w -F c -b -v -f $INDUK_DIR/$BACKUP_NAME dot-golang

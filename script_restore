@@ -1,0 +1,8 @@
+#!/bin/bash
+
+INDUK_DIR="."
+FILE_NAME=$(find $INDUK_DIR -type f -name "*.backup" | sort -r | head -1)
+size=${#FILE_NAME}
+BACKUP_NAME=$(echo $FILE_NAME | cut -c3-$size)
+echo -e "File Backup Find---> $BACKUP_NAME \v"
+/Applications/pgAdmin\ 4.app/Contents/SharedSupport/pg_restore -h localhost -p 5144 -U dot-golang -v -w -d dot-golang $INDUK_DIR/$BACKUP_NAME
